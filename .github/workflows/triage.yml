@@ -1,0 +1,30 @@
+name: triage
+
+on:
+  issues:
+    types: [opened]
+
+jobs:
+  triage:
+    if: github.event.sender.type != 'Bot'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      issues: write
+    steps:
+      - uses: x-cmd-action/x-cmd@v1
+        with:
+          stream: x7
+
+      - name: bind Zhipu GLM
+        env:
+          ZHIPU_API_KEY: ${{ secrets.ZHIPU_API_KEY }}
+        run: |
+          . ~/.x-cmd.root/X
+          x agent --cfg zero_harness=claude-zhipu
+
+      - uses: x-cmd-action/ai/triage@v1
+        with:
+          apply-labels: 'true'
+        env:
+          ZHIPU_API_KEY: ${{ secrets.ZHIPU_API_KEY }}

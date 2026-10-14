@@ -1,0 +1,37 @@
+name: reply
+
+on:
+  issue_comment:
+    types: [created]
+  issues:
+    types: [opened]
+
+jobs:
+  reply:
+    if: github.event.sender.type != 'Bot'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      issues: write
+    concurrency:
+      group: ai-reply
+      cancel-in-progress: false
+    steps:
+      - uses: x-cmd-action/x-cmd@v1
+        with:
+          stream: x7
+
+      - name: bind Zhipu GLM
+        env:
+          ZHIPU_API_KEY: ${{ secrets.ZHIPU_API_KEY }}
+        run: |
+          . ~/.x-cmd.root/X
+          x agent --cfg zero_harness=claude-zhipu
+
+      - uses: x-cmd-action/ai/reply@v1
+        with:
+          keyword: '@x'
+          reaction: eyes
+          use_ai: 'true'
+        env:
+          ZHIPU_API_KEY: ${{ secrets.ZHIPU_API_KEY }}
