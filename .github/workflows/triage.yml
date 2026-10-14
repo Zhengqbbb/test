@@ -23,7 +23,7 @@ jobs:
           . ~/.x-cmd.root/X
           x agent --cfg zero_harness=claude-zhipu
 
-      - uses: x-cmd-action/ai/triage@v1
+      - uses: x-cmd-action/ai/triage@main
         with:
           apply-labels: 'true'
         env:
