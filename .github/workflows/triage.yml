@@ -12,7 +12,7 @@ jobs:
       contents: read
       issues: write
     steps:
-      - uses: x-cmd-action/ai/triage@main
+      - uses: qiakai/x-cmd-action-ai/triage@main
         with:
           apply-labels: 'true'
         env:
