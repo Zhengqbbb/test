@@ -17,17 +17,6 @@ jobs:
       group: ai-reply
       cancel-in-progress: false
     steps:
-      - uses: x-cmd-action/x-cmd@v1
-        with:
-          stream: x7
-
-      - name: bind Zhipu GLM
-        env:
-          ZHIPU_API_KEY: ${{ secrets.ZHIPU_API_KEY }}
-        run: |
-          . ~/.x-cmd.root/X
-          x agent --cfg zero_harness=claude-zhipu
-
       - uses: x-cmd-action/ai/reply@v1
         with:
           keyword: '@x'
