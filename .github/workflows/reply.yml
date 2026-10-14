@@ -17,7 +17,7 @@ jobs:
       group: ai-reply
       cancel-in-progress: false
     steps:
-      - uses: x-cmd-action/ai/reply@v1
+      - uses: qiakai/x-cmd-action-ai/reply@main
         with:
           keyword: '@x'
           reaction: eyes

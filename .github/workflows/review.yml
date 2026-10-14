@@ -12,6 +12,6 @@ jobs:
       contents: read
       pull-requests: write
     steps:
-      - uses: x-cmd-action/ai/review@main
+      - uses: qiakai/x-cmd-action-ai/review@main
         env:
           ZHIPU_API_KEY: ${{ secrets.ZHIPU_API_KEY }}
