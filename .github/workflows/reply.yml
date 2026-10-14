@@ -13,6 +13,7 @@ jobs:
     permissions:
       contents: read
       issues: write
+      pull-requests: write
     concurrency:
       group: ai-reply
       cancel-in-progress: false
